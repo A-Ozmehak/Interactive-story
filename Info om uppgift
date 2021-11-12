@@ -1,0 +1,14 @@
+//STATE
+const inventory = [];
+const activeScene = 0;
+const scenes = [{
+text: ' Välkommen' ,
+nextScene: [1,4,6]
+},{
+text: ' oj nu har du hamnat konstigt'
+nextScene: [0]
+}];
+
+function goToTextScene() {}
+
+function renderScene() {}

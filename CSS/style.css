@@ -1,0 +1,48 @@
+body {
+    background: black;
+    color: white;
+}
+
+h1 {
+    color: white;
+    font-size: 3rem;
+    align-self: center;
+}
+
+#start-button {
+    width: 300px;
+    height: 40px;
+    font-size: 2rem;
+    align-self: center;
+}
+
+.start-container {
+    height: 30rem;
+    width: 20rem;
+    left: 40%;
+    top: 20rem;
+}
+
+#start-background img {
+    height: 80rem;
+    width: 90rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*Reusable classes*/
+.flex { display: flex; }
+.align-center { align-content: center; }
+.justify-center { justify-content: center; }
+.flex-column { flex-direction: column; }
+.relative { position: relative; }
+.absolute { position: absolute; }
