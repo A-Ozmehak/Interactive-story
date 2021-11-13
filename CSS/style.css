@@ -45,60 +45,44 @@ h1 {
 
 
 
-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+/*@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');*/
 
-body{
-    padding: 40px;
-    background-color: #121212;
-    word-wrap: normal;
-}
+/*body{*/
+/*    padding: 40px;*/
+/*    background-color: #121212;*/
+/*    word-wrap: normal;*/
+/*}*/
 
-p {
-    border-right: solid 3px rgba(0,255,0,.75);
-    white-space: nowrap;
-    overflow: hidden;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 28px;
-    color: rgba(255,255,255,.70);
-}
+/*p {*/
+/*    border-right: solid 3px rgba(0,255,0,.75);*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    font-family: 'Source Code Pro', monospace;*/
+/*    font-size: 28px;*/
+/*    color: rgba(255,255,255,.70);*/
+/*}*/
 
-/* Animation */
-p {
-    animation: animated-text 4s steps(29,end) 1s 1 normal both,
-    animated-cursor 600ms steps(29,end) infinite;
-}
+/*!* Animation *!*/
+/*p {*/
+/*    animation: animated-text 4s steps(29,end) 1s 1 normal both,*/
+/*    animated-cursor 600ms steps(29,end) infinite;*/
+/*}*/
 
-/* text animation */
+/*!* text animation *!*/
 
-@keyframes animated-text{
-    from{width: 0;}
-    to{width: 472px;}
-}
+/*@keyframes animated-text{*/
+/*    from{width: 0;}*/
+/*    to{width: 472px;}*/
+/*}*/
 
-/* cursor animations */
+/*!* cursor animations *!*/
 
-@keyframes animated-cursor{
-    from{border-right-color: rgba(0,255,0,.75);}
-    to{border-right-color: transparent;}
-}
-
-
+/*@keyframes animated-cursor{*/
+/*    from{border-right-color: rgba(0,255,0,.75);}*/
+/*    to{border-right-color: transparent;}*/
+/*}*/
 
 
 
 
-/*
-.text-anim{
 
-    font-family: "Courier";
-    font-size: 20px;
-    margin: 10px 0 0 10px;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 30em;
-    animation: type 4s steps(60, end);
-}
-
-@keyframes type{
-    from { width: 0; }
-}*/
