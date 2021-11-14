@@ -15,29 +15,26 @@ function onStartButton() {
     const pElement = document.createElement('p');
     pElement.innerText = `This is a story about a dark night. 
     Please tell us your name in case something happens to you`;
-    const errorElement = document.createElement('p')
-    errorElement.innerText = 'Add your name with atleast two letters'
-    errorElement.classList.add('errorinjo');
+    const paragraphElement = document.createElement('p')
+    paragraphElement.innerText = 'Add your name with atleast two letters'
+    paragraphElement.classList.add('paragraph-element');
     pElement.classList.add('text-anim');
-    errorElement.style.fontSize = '30px';
 
-    document.getElementById('main-content').append(pElement, errorElement);
-    //Ändrat text färg
-    pElement.style.color = 'white';
-    pElement.style.fontSize = '30px'
+    document.getElementById('main-content').append(pElement, paragraphElement);
+
 
     //Skapat ett inputfält
     const userInputField = document.createElement('input');
     userInputField.id = 'nameField';
     document.getElementById('main-content').append(userInputField);
-    userInputField.addEventListener('input', () => nameInTextField(userInputField, errorElement, nameConfirmButton));
+    userInputField.addEventListener('input', () => nameInTextField(userInputField, paragraphElement, nameConfirmButton));
 
     //Skapar en knapp
     const nameConfirmButton = document.createElement('button');
     nameConfirmButton.id = 'nameButton';
     document.getElementById('main-content').append(nameConfirmButton);
     nameConfirmButton.innerText = 'Done';
-    nameConfirmButton.addEventListener('click', () => startAdventure(errorElement, userInputField, nameConfirmButton));
+    nameConfirmButton.addEventListener('click', () => startAdventure(paragraphElement, userInputField, nameConfirmButton));
     nameConfirmButton.setAttribute('disabled', "");
 
     //skapa ett divelement som vi sen kan tömma
@@ -52,7 +49,7 @@ function nameInTextField(userInputField, errorElement, nameConfirmButton) {
         nameConfirmButton.removeAttribute('disabled', "")
     }
 }
-
+//Text med namnet användaren fyllt i
 function startAdventure(errorElement, userInputField) {
     errorElement.innerText = `Hello ${userInputField.value}!
         You just moved to a new town and don't know anything about this place. 
@@ -74,7 +71,7 @@ function startAdventure(errorElement, userInputField) {
 
 //skapat function som ger olika resultat beroende på inputen
 function onHomeInput(homeInput) {
-    console.log(homeInput.value.toUpperCase())
+
     document.getElementById('storyContent').innerHTML = ''
     const confirmGettingHomeButton = document.createElement('button');
     document.getElementById('storyContent').append(confirmGettingHomeButton);
@@ -86,15 +83,16 @@ function onHomeInput(homeInput) {
         //document.getElementById('storyContent').innerHTML = '';
         const pElement = document.createElement('p');
         document.getElementById('storyContent').append(pElement);
-        pElement.style.fontSize = '30px';
         pElement.innerText = 'The buses have already stopped running for today';
 
 
     } else if (homeInput.value.toUpperCase() === 'WALK') {
         //document.getElementById('storyContent').innerHTML = '';
         const pElement = document.createElement('p');
-        document.getElementById('storyContent').append(pElement);
-        pElement.style.fontSize = '30px';
+        const divElement = document.createElement('div');
+        divElement.id = 'divContent';
+        divElement.append(pElement);
+       // document.getElementById('storyContent').append(pElement);
         pElement.innerText = `Good choice you decided to walk`;
         confirmGettingHomeButton.removeAttribute('disabled', "");
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceWalk'))
@@ -102,9 +100,10 @@ function onHomeInput(homeInput) {
 
     } else if (homeInput.value.toUpperCase() === 'TAXI') {
         const pElement = document.createElement('p');
-        document.getElementById('storyContent').append(pElement);
-        pElement.style.fontSize = '30px';
-        pElement.innerText = `Good choice you decided to take a taxi`;
+        const divElement = document.createElement('div');
+        divElement.id = 'divContent';
+        divElement.append(pElement);
+//        pElement.innerText = `Good choice you decided to take a taxi`;
         confirmGettingHomeButton.removeAttribute('disabled', "");
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceTaxi'))
 
@@ -119,7 +118,6 @@ function decisionToMove(input) {
     divElement.id = 'divContent';
     divElement.append(pElement);
     document.getElementById('main-content').append(divElement);
-    pElement.style.fontSize = '30px';
 
 
     if (input === 'choiceWalk') {
@@ -143,7 +141,7 @@ function decisionToMove(input) {
         walkInDarkButton.addEventListener('click', () => decisionToMoveOn('walkHome'));
 
     } else if (input === 'choiceTaxi') {
-        pElement.innerText = `You choice to look for a taxi and after a few minutes
+        pElement.innerText = `You choose to look for a taxi and after a few minutes
         you see a car with the headlights on a few meters in front of you.
         You walk towards it and bend down to see if there's someone inside the car. 
         But the only thing you see is a bloody hand print on the window.
@@ -170,7 +168,6 @@ function decisionToMoveOn(input) {
     divElement.append(pElement);
     document.getElementById('main-content').append(divElement);
 
-    pElement.style.fontSize = '30px';
 
 
     if (input === 'sleepInWoods') {
@@ -212,7 +209,7 @@ function decisionToMoveOn(input) {
         turnButton.addEventListener('click', () => lastStep('turnAround'));
 
     } else if (input === 'detectivChoice') {
-        pElement.innerText = `You take up a cigar from your pocket and lights it,
+        pElement.innerText = `You take up a cigar from your pocket and light it,
         and start pretending your detective Columbo. You start looking for 
         clues and soon see a man standing in a alley close by.
         You slowly walk towards him and...
@@ -241,7 +238,6 @@ function lastStep(input) {
     divElement.append(pElement);
     document.getElementById('main-content').append(divElement);
 
-    pElement.style.fontSize = '30px';
 
     if (input === 'ignores') {
         pElement.innerText = `You look at the mass of people and frown
