@@ -40,11 +40,10 @@ function onStartButton() {
     nameConfirmButton.addEventListener('click', () => startAdventure(errorElement, userInputField, nameConfirmButton));
     nameConfirmButton.setAttribute('disabled', "");
 
-    //skapa ett divelement som vi sen kan tömma - win.
+    //skapa ett divelement som vi sen kan tömma
     const divElement = document.createElement('div')
     divElement.id = 'storyContent'
     document.getElementById('main-content').append(divElement)
-
 }
 
 //Bekräfta att användaren fyllt i sitt namn
@@ -61,33 +60,69 @@ function startAdventure(errorElement, userInputField) {
         and you need to get home. 
         
         How will you get home? Bus, Walk or Taxi?`
+
     //gömmer textfältet för namn
     document.getElementById('nameField').style.display = 'none';
     document.getElementById('nameButton').style.display = 'none';
 
     //skapar nytt input
     const homeInput = document.createElement('input');
+    homeInput.id = 'inputHome';
     document.getElementById('main-content').append(homeInput);
     homeInput.addEventListener('input', () => onHomeInput(homeInput));
-
 }
+
 //skapat function som ger olika resultat beroende på inputen
 function onHomeInput(homeInput) {
-console.log(homeInput.value)
+    console.log(homeInput.value.toUpperCase())
+    document.getElementById('storyContent').innerHTML = ''
+    const confirmGettingHomeButton = document.createElement('button');
+    document.getElementById('storyContent').append(confirmGettingHomeButton);
+    confirmGettingHomeButton.innerText = `I'm ready`;
+    confirmGettingHomeButton.setAttribute('disabled', "");
 
 
-    if (homeInput.value === 'Bus') {
-        document.getElementById('storyContent').innerHTML = ''
+    if (homeInput.value.toUpperCase() === 'BUS') {
+        //document.getElementById('storyContent').innerHTML = '';
         const pElement = document.createElement('p');
         document.getElementById('storyContent').append(pElement);
         pElement.style.fontSize = '30px';
         pElement.innerText = 'The buses have already stopped running for today';
 
-    } else if (homeInput.value === 'Walk') {
-        document.getElementById('storyContent').innerHTML = ''
+
+    } else if (homeInput.value.toUpperCase() === 'WALK') {
+        //document.getElementById('storyContent').innerHTML = '';
         const pElement = document.createElement('p');
         document.getElementById('storyContent').append(pElement);
         pElement.style.fontSize = '30px';
+        pElement.innerText = `Good choice you decided to walk`;
+        confirmGettingHomeButton.removeAttribute('disabled', "");
+        confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceWalk'))
+
+
+    } else if (homeInput.value.toUpperCase() === 'TAXI') {
+        const pElement = document.createElement('p');
+        document.getElementById('storyContent').append(pElement);
+        pElement.style.fontSize = '30px';
+        pElement.innerText = `Good choice you decided to take a taxi`;
+        confirmGettingHomeButton.removeAttribute('disabled', "");
+        confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceTaxi'))
+
+    }
+}
+
+function decisionToMove(input) {
+
+    document.getElementById('main-content').innerHTML = '';
+    const pElement = document.createElement('p');
+    const divElement = document.createElement('div');
+    divElement.id = 'divContent';
+    divElement.append(pElement);
+    document.getElementById('main-content').append(divElement);
+    pElement.style.fontSize = '30px';
+
+
+    if (input === 'choiceWalk') {
         pElement.innerText = `You decided to walk home, and starts walking towards your home
             that is about an hour away.
             It's really dark outside and you walk over a little bridge to an island
@@ -95,22 +130,160 @@ console.log(homeInput.value)
 
             What do you do?`;
 
-    } else if (homeInput.value === 'Taxi') {
-        document.getElementById('storyContent').innerHTML = ''
-        const pElement = document.createElement('p');
-        document.getElementById('storyContent').append(pElement);
-        pElement.style.fontSize = '30px';
+        const walkInDarkButton = document.createElement('button');
+        divElement.append(walkInDarkButton);
+        walkInDarkButton.innerText = `Keep walking towards your 
+        home in the dark`;
+        const sleepOutsideButton = document.createElement('button');
+        divElement.append(sleepOutsideButton);
+        sleepOutsideButton.innerText = `Decide to stay on the little island 
+        and live like in Cast Away`;
+
+        sleepOutsideButton.addEventListener('click', () => decisionToMoveOn('sleepInWoods'));
+        walkInDarkButton.addEventListener('click', () => decisionToMoveOn('walkHome'));
+
+    } else if (input === 'choiceTaxi') {
         pElement.innerText = `You choice to look for a taxi and after a few minutes
         you see a car with the headlights on a few meters in front of you.
-        You walk towards it and bend down to see if there's someone inside
-        the car. But the only thing you see is a bloody hand print on the window.
-
+        You walk towards it and bend down to see if there's someone inside the car. 
+        But the only thing you see is a bloody hand print on the window.
+        
         What do you do?`;
 
+        const runButton = document.createElement('button');
+        divElement.append(runButton);
+        runButton.innerText = `Run`;
+        const pretendButton = document.createElement('button');
+        divElement.append(pretendButton);
+        pretendButton.innerText = `Light my cigar and pretend
+        l'm detectiv Columbo`;
+
+        pretendButton.addEventListener('click', () => decisionToMoveOn('detectivChoice'));
+        runButton.addEventListener('click', () => decisionToMoveOn('runChoice'));
     }
 }
 
-// function
+function decisionToMoveOn(input) {
+    document.getElementById('main-content').innerHTML = '';
+    const divElement = document.createElement('div');
+    const pElement = document.createElement('p');
+    divElement.append(pElement);
+    document.getElementById('main-content').append(divElement);
+
+    pElement.style.fontSize = '30px';
+
+
+    if (input === 'sleepInWoods') {
+        pElement.innerText = `You are staying on the island and starts to feel around oon the ground
+        for sticks so you can build yourself a shelter, and fall fast asleep.
+        When you wake up you look outside your shelter and see that a lot of people
+        have gathered around your little shelter.
+        You feel embarrassed.
+        
+        What do you do?`
+
+        const ignoreButton = document.createElement('button');
+        divElement.append(ignoreButton);
+        ignoreButton.innerText = `Ignore them and goes outlooking for food`;
+        ignoreButton.addEventListener('click', () => lastStep('ignores'));
+
+        const runHomeButton = document.createElement('button');
+        divElement.append(runHomeButton);
+        runHomeButton.innerText = 'Run home';
+        runHomeButton.addEventListener('click', () => lastStep('runHome'));
+
+    } else if (input === 'walkHome') {
+        pElement.innerText = `You keep walking towards your home but it's really dark
+        and it's hard to see anything.
+        
+        You start hearing footsteps behind you, you start walking a bit faster.
+        But the footsteps behind you accelerates. 
+        
+        What do you do?`;
+
+        const runButton = document.createElement('button');
+        divElement.append(runButton);
+        runButton.innerText = `Run`;
+        runButton.addEventListener('click', () => lastStep('runningHome'));
+
+        const turnButton = document.createElement('button');
+        divElement.append(turnButton);
+        turnButton.innerText = `Turn around`;
+        turnButton.addEventListener('click', () => lastStep('turnAround'));
+
+    } else if (input === 'detectivChoice') {
+        pElement.innerText = `You take up a cigar from your pocket and lights it,
+        and start pretending your detective Columbo. You start looking for 
+        clues and soon see a man standing in a alley close by.
+        You slowly walk towards him and...
+        
+        Scroll down!`;  //ingen addeventlisterner
+
+    } else if (input === 'runChoice') {
+        pElement.innerText = `You start running but soon fall and hit your head on the ground.
+        You turn your head and see something coming running towards you.
+        
+        You soon see that it's the cutest dog ever coming towards you 
+        and starts licking your face. 
+        You forget about the pain and the blood and you and the dog
+        walks home together.
+        You live happy ever after.
+        
+        THE END`;
+    }
+
+}
+
+function lastStep(input) {
+    document.getElementById('main-content').innerHTML = '';
+    const divElement = document.createElement('div');
+    const pElement = document.createElement('p');
+    divElement.append(pElement);
+    document.getElementById('main-content').append(divElement);
+
+    pElement.style.fontSize = '30px';
+
+    if (input === 'ignores') {
+        pElement.innerText = `You look at the mass of people and frown
+        your face, and goes out looking for something to eat. 
+        You find some berries and some moss and live happily
+        ever after.
+        
+        THE END`;
+
+    } else if (input === 'runHome') {
+        pElement.innerText = `You start running home and when you finally
+        gets inside your door, you start thinking that maybe you should
+        move somewhere else.
+        
+        THE END`;
+
+    } else if (input === 'runningHome') {
+        pElement.innerText = `You start running but soon fall and hit your head
+        on the ground.
+        You turn your head and see something coming running towards you.
+        
+        You soon see that it's the cutest dog ever coming towards you and starts licking your face.
+        You forget about the pain and the blood and you and the dog walks home together.
+        You live happy ever after.
+        
+        THE END`
+
+    } else if (input === 'turnAround') {
+        pElement.innerText = `You turn around and see the cutest dog ever running towards you.
+        You bend down and it jumps in your arms and licks your face.
+        
+        The dog dosen't have a color so you decide to take the dog 
+        with you and walks home.
+        
+        You and the dog lives happy ever after.
+        
+        THE END`
+
+    } else if (input === 'detective') { // ingen addEventlisterner än!!
+
+    }
+}
 
 
 
