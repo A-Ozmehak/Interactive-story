@@ -13,10 +13,12 @@ function addEventListeners() {
 function onStartButton() {
     document.getElementById('main-content').innerHTML = '';
     const pElement = document.createElement('p');
-    pElement.innerText = `This is a story about a dark night. 
+    pElement.id = 'firstPElement';
+    pElement.innerText = `This is a strange story with many endings. Good Luck. 
+    
     Please tell us your name in case something happens to you`;
     const paragraphElement = document.createElement('p')
-    paragraphElement.innerText = 'Add your name with atleast two letters'
+    paragraphElement.innerText = 'Minimum of two letters'
     paragraphElement.classList.add('paragraph-element');
     pElement.classList.add('text-anim');
 
@@ -41,17 +43,18 @@ function onStartButton() {
     const divElement = document.createElement('div')
     divElement.id = 'storyContent'
     document.getElementById('main-content').append(divElement)
+
 }
 
 //Bekräfta att användaren fyllt i sitt namn
-function nameInTextField(userInputField, errorElement, nameConfirmButton) {
+function nameInTextField(userInputField, paragraphElement, nameConfirmButton) {
     if (userInputField.value.length >= 2) {
         nameConfirmButton.removeAttribute('disabled', "")
     }
 }
 //Text med namnet användaren fyllt i
-function startAdventure(errorElement, userInputField) {
-    errorElement.innerText = `Hello ${userInputField.value}!
+function startAdventure(paragraphElement, userInputField) {
+    paragraphElement.innerText = `Hello ${userInputField.value}!
         You just moved to a new town and don't know anything about this place. 
         One day your in town, when you look at your watch and see that it's really late 
         and you need to get home. 
@@ -80,19 +83,18 @@ function onHomeInput(homeInput) {
 
 
     if (homeInput.value.toUpperCase() === 'BUS') {
-        //document.getElementById('storyContent').innerHTML = '';
+
         const pElement = document.createElement('p');
         document.getElementById('storyContent').append(pElement);
         pElement.innerText = 'The buses have already stopped running for today';
 
 
     } else if (homeInput.value.toUpperCase() === 'WALK') {
-        //document.getElementById('storyContent').innerHTML = '';
+
         const pElement = document.createElement('p');
         const divElement = document.createElement('div');
         divElement.id = 'divContent';
         divElement.append(pElement);
-       // document.getElementById('storyContent').append(pElement);
         pElement.innerText = `Good choice you decided to walk`;
         confirmGettingHomeButton.removeAttribute('disabled', "");
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceWalk'))
@@ -103,7 +105,7 @@ function onHomeInput(homeInput) {
         const divElement = document.createElement('div');
         divElement.id = 'divContent';
         divElement.append(pElement);
-//        pElement.innerText = `Good choice you decided to take a taxi`;
+        pElement.innerText = `Good choice you decided to take a taxi`;
         confirmGettingHomeButton.removeAttribute('disabled', "");
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceTaxi'))
 
@@ -165,6 +167,7 @@ function decisionToMoveOn(input) {
     document.getElementById('main-content').innerHTML = '';
     const divElement = document.createElement('div');
     const pElement = document.createElement('p');
+    pElement.id = 'moveOptions';
     divElement.append(pElement);
     document.getElementById('main-content').append(divElement);
 
@@ -190,6 +193,10 @@ function decisionToMoveOn(input) {
         runHomeButton.addEventListener('click', () => lastStep('runHome'));
 
     } else if (input === 'walkHome') {
+        let darkForestImg = new Image(600, 800);
+        darkForestImg.src = '/img/dark_woods.jpg';
+        document.body.appendChild(darkForestImg);
+
         pElement.innerText = `You keep walking towards your home but it's really dark
         and it's hard to see anything.
         
@@ -215,8 +222,17 @@ function decisionToMoveOn(input) {
         You slowly walk towards him and...
         
         Scroll down!`;  //ingen addeventlisterner
+        divElement.style.height = '3000px';
+
+        pElement.innerText = `The man turns his head and says 
+        "What do you want? You look down and see that he's takes a leak.`;
+
 
     } else if (input === 'runChoice') {
+        let dogImage =  Image(800, 800);
+        dogImage.src = '/img/dog in dark.jpg';
+        document.body.appendChild(dogImage);
+
         pElement.innerText = `You start running but soon fall and hit your head on the ground.
         You turn your head and see something coming running towards you.
         
@@ -255,6 +271,11 @@ function lastStep(input) {
         THE END`;
 
     } else if (input === 'runningHome') {
+
+        let dogImage = new Image(800, 800);
+        dogImage.src = '/img/dog in dark.jpg';
+        document.body.appendChild(dogImage);
+
         pElement.innerText = `You start running but soon fall and hit your head
         on the ground.
         You turn your head and see something coming running towards you.
@@ -263,9 +284,15 @@ function lastStep(input) {
         You forget about the pain and the blood and you and the dog walks home together.
         You live happy ever after.
         
-        THE END`
+        THE END`;
+
 
     } else if (input === 'turnAround') {
+
+        let dogImage = new Image(800, 800);
+        dogImage.src = '/img/dog in dark.jpg';
+        document.body.appendChild(dogImage);
+
         pElement.innerText = `You turn around and see the cutest dog ever running towards you.
         You bend down and it jumps in your arms and licks your face.
         
@@ -274,7 +301,7 @@ function lastStep(input) {
         
         You and the dog lives happy ever after.
         
-        THE END`
+        THE END`;
 
     } else if (input === 'detective') { // ingen addEventlisterner än!!
 

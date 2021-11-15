@@ -26,10 +26,29 @@ h1 {
 .start-picture{
     height: 100vh;
     width: 100%;
-
 }
 
+#firstPElement {
+    text-align: center;
+}
 
+.paragraph-element {
+    text-align: center;
+    color: red;
+    font-size: 1rem;
+}
+
+#moveOptions {
+    text-align: center;
+}
+
+#storyContent {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    flex-direction: column;
+}
 
 #divContent {
     display: flex;
@@ -38,6 +57,40 @@ h1 {
     text-align: center;
     flex-direction: column;
 }
+
+#storyContent {
+    /*display: inline-block;*/
+}
+
+p {
+    /*display: inline-block;*/
+    overflow: hidden;
+    letter-spacing: 2px;
+    animation: typing 5s steps(30, end), blink, .75s step-end infinite;
+    white-space: nowrap;
+    /*box-sizing: border-box;*/
+    border-right: 1px solid white;
+}
+
+@keyframes typing {
+    from {
+        width: 0%
+    }
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink {
+    from, to {
+        border-color: transparent
+    }
+    50% {
+        border-color: orange;
+    }
+}
+
+
 
 
 
