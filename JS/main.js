@@ -11,70 +11,43 @@ function addEventListeners() {
 
 //Tömmer innehållet i HTML'en och skapar ett p element med innehåll (sida 2)
 function onStartButton() {
-    document.getElementById('main-content').innerHTML = '';
-    pelementCreator('step1')
-    pelementCreator('minimum')
+    document.querySelector('.start-container').innerHTML = '';
+    elementCreator('.start-container', 'p', story.onStartPress)
+    elementCreator('.start-container', 'p', story.minimumLetters)
 
-    //Skapat ett inputfält
-    const userInputField = document.createElement('input');
-    userInputField.id = 'nameField';
-    document.getElementById('main-content').append(userInputField);
-    userInputField.addEventListener('input', () => nameInTextField(userInputField, nameConfirmButton));
-
-    //Skapar en knapp
-    const nameConfirmButton = document.createElement('button');
-    nameConfirmButton.id = 'nameButton';
-    document.getElementById('main-content').append(nameConfirmButton);
-    nameConfirmButton.innerText = 'Done';
-    nameConfirmButton.addEventListener('click', () => startAdventure(userInputField, nameConfirmButton));
+    //Skapat ett inputfält med knapp
+    let userInputField = elementCreator('.start-container', 'input')
+    let nameConfirmButton = elementCreator('.start-container', 'button', 'Done')
     nameConfirmButton.setAttribute('disabled', "");
-
-    //skapa ett divelement som vi sen kan tömma
-    const divElement = document.createElement('div');
-    divElement.id = 'storyContent';
-    document.getElementById('main-content').append(divElement);
-
+    userInputField.addEventListener('input', () => nameInTextField(userInputField, nameConfirmButton));
+    nameConfirmButton.addEventListener('click', () => afterNameInput(userInputField, nameConfirmButton));
 }
 
 //Bekräfta att användaren fyllt i sitt namn
 function nameInTextField(userInputField, nameConfirmButton) {
     if (userInputField.value.length >= 2) {
         nameConfirmButton.removeAttribute('disabled', "")
+    } else {
+        nameConfirmButton.setAttribute('disabled', "");
     }
 }
 
 //Text med namnet användaren fyllt i
-function startAdventure(userInputField) {
-    pelementCreator('step2', userInputField);
-
-    //gömmer textfältet för namn
-    document.getElementById('nameField').style.display = 'none';
-    document.getElementById('nameButton').style.display = 'none';
-
-    //skapar nytt input
-    const homeInput = document.createElement('input');
-    homeInput.id = 'inputHome';
-    document.getElementById('main-content').append(homeInput);
-    homeInput.addEventListener('input', () => onHomeInput(homeInput));
-
-
+function afterNameInput(userInputField) {
+    document.querySelector('.start-container').innerHTML = ''
+    elementCreator('.start-container', 'p', story.afterPlayerName, userInputField);
+    let homeInput = elementCreator('.start-container', 'input')
+    let confirmGettingHomeButton = elementCreator('.start-container', 'button', 'ImReady')
+    confirmGettingHomeButton.setAttribute('disabled', "");
+    homeInput.addEventListener('input', () => onHomeInput(homeInput, confirmGettingHomeButton));
+    confirmGettingHomeButton.addEventListener('click', () => onHomeInput(homeInput, confirmGettingHomeButton))
 }
 
 //skapat function som ger olika resultat beroende på inputen
-function onHomeInput(homeInput) {
-
-    document.getElementById('storyContent').innerHTML = ''
-    const confirmGettingHomeButton = document.createElement('button');
-    document.getElementById('storyContent').append(confirmGettingHomeButton);
-    confirmGettingHomeButton.innerText = `I'm ready`;
+function onHomeInput(homeInput, confirmGettingHomeButton) {
     confirmGettingHomeButton.setAttribute('disabled', "");
-
-
     if (homeInput.value.toUpperCase() === 'BUS') {
-
-        const pElement = document.createElement('p');
-        document.getElementById('storyContent').append(pElement);
-        pElement.innerText = 'The buses have already stopped running for today';
+        elementCreator('.story-container', 'p', story.choiceBus)
 
 
     } else if (homeInput.value.toUpperCase() === 'WALK') {
@@ -91,7 +64,7 @@ function onHomeInput(homeInput) {
     }
 }
 
-function decisionToMove(input) {
+function decisionToMove(choice) {
 
     document.getElementById('main-content').innerHTML = '';
     const pElement = document.createElement('p');
@@ -101,13 +74,8 @@ function decisionToMove(input) {
     document.getElementById('main-content').append(divElement);
 
 
-    if (input === 'choiceWalk') {
-        pElement.innerText = `You decided to walk home, and starts walking towards your home
-            that is about an hour away.
-            It's really dark outside and you walk over a little bridge to an island
-            you have to walk through to get to your home, but you can't see anything.
-
-            What do you do?`;
+    if (choice === 'choiceWalk') {
+        elementCreator(story.playerChoiceWalk)
 
         const walkInDarkButton = document.createElement('button');
         divElement.append(walkInDarkButton);
@@ -121,13 +89,8 @@ function decisionToMove(input) {
         sleepOutsideButton.addEventListener('click', () => decisionToMoveOn('sleepInWoods'));
         walkInDarkButton.addEventListener('click', () => decisionToMoveOn('walkHome'));
 
-    } else if (input === 'choiceTaxi') {
-        pElement.innerText = `You choose to look for a taxi and after a few minutes
-        you see a car with the headlights on a few meters in front of you.
-        You walk towards it and bend down to see if there's someone inside the car. 
-        But the only thing you see is a bloody hand print on the window.
-        
-        What do you do?`;
+    } else if (choice === 'choiceTaxi') {
+        elementCreator(story.playerChoiceTaxi)
 
         const runButton = document.createElement('button');
         divElement.append(runButton);
@@ -152,13 +115,7 @@ function decisionToMoveOn(input) {
 
 
     if (input === 'sleepInWoods') {
-        pElement.innerText = `You are staying on the island and starts to feel around oon the ground
-        for sticks so you can build yourself a shelter, and fall fast asleep.
-        When you wake up you look outside your shelter and see that a lot of people
-        have gathered around your little shelter.
-        You feel embarrassed.
-        
-        What do you do?`
+        elementCreator(story.playerSleepInWoods)
 
         const ignoreButton = document.createElement('button');
         divElement.append(ignoreButton);
@@ -171,14 +128,8 @@ function decisionToMoveOn(input) {
         runHomeButton.addEventListener('click', () => lastStep('runHome'));
 
     } else if (input === 'walkHome') {
+        elementCreator(story.playerWalksHome)
 
-        pElement.innerText = `You keep walking towards your home but it's really dark
-        and it's hard to see anything.
-        
-        You start hearing footsteps behind you, you start walking a bit faster.
-        But the footsteps behind you accelerates. 
-        
-        What do you do?`;
 
         const runButton = document.createElement('button');
         divElement.append(runButton);
@@ -191,29 +142,14 @@ function decisionToMoveOn(input) {
         turnButton.addEventListener('click', () => lastStep('turnAround'));
 
     } else if (input === 'detectivChoice') {
-        pElement.innerText = `You take up a cigar from your pocket and light it,
-        and start pretending your detective Columbo. You start looking for 
-        clues and soon see a man standing in a alley close by.
-        You slowly walk towards him and...
-        
-        Scroll down!`;  //ingen addeventlisterner
+        elementCreator(story.playerChoiceDetective) //ingen addeventlisterner
         divElement.style.height = '3000px';
 
-        pElement.innerText = `The man turns his head and says 
-        "What do you want? You look down and see that he's takes a leak.`;
+        elementCreator(story.playerScrollDown)
 
 
     } else if (input === 'runChoice') {
-        pElement.innerText = `You start running but soon fall and hit your head on the ground.
-        You turn your head and see something coming running towards you.
-        
-        You soon see that it's the cutest dog ever coming towards you 
-        and starts licking your face. 
-        You forget about the pain and the blood and you and the dog
-        walks home together.
-        You live happy ever after.
-        
-        THE END`;
+        elementCreator(story.playerRuns)
     }
 
 }
@@ -227,86 +163,43 @@ function lastStep(input) {
 
 
     if (input === 'ignores') {
-        pElement.innerText = `You look at the mass of people and frown
-        your face, and goes out looking for something to eat. 
-        You find some berries and some moss and live happily
-        ever after.
-        
-        THE END`;
+        elementCreator(story.playerIgnoresPeople)
 
     } else if (input === 'runHome') {
-        pElement.innerText = `You start running home and when you finally
-        gets inside your door, you start thinking that maybe you should
-        move somewhere else.
-        
-        THE END`;
+        elementCreator(story.playerRunsHome)
 
     } else if (input === 'runningHome') {
-        pElement.innerText = `You start running but soon fall and hit your head
-        on the ground.
-        You turn your head and see something coming running towards you.
-        
-        You soon see that it's the cutest dog ever coming towards you and starts licking your face.
-        You forget about the pain and the blood and you and the dog walks home together.
-        You live happy ever after.
-        
-        THE END`;
+        elementCreator(story.playerRunning)
 
 
     } else if (input === 'turnAround') {
-        pElement.innerText = `You turn around and see the cutest dog ever running towards you.
-        You bend down and it jumps in your arms and licks your face.
-        
-        The dog dosen't have a color so you decide to take the dog 
-        with you and walks home.
-        
-        You and the dog lives happy ever after.
-        
-        THE END`;
+        elementCreator(story.playerTurnsAround)
 
     } else if (input === 'detective') { // ingen addEventlisterner än!!
 
     }
 }
 
-
-function pelementCreator(storyContent, userInputField) {
-    switch (storyContent) {
-        case 'step1':
-
-            const pElement = document.createElement('p');
-            pElement.innerText = story.onStartPress
-            document.getElementById('main-content').append(pElement)
-            return pElement
-        break;
-
-        case 'minimum':
-            const minimumElement = document.createElement('p');
-            minimumElement.innerText = `minimum of two letters`
-            minimumElement.classList.add('redtext')
-            document.getElementById('main-content').append(minimumElement)
-            return minimumElement
-        break;
-
-        case 'step2':
-            const greetingsText = document.createElement('p');
-            greetingsText.innerText = `Hello ${userInputField.value}!
-            You just moved to a new town and don't know anything about this place. 
-            One day your in town, when you look at your watch and see that it's really late 
-            and you need to get home. 
-            
-            How will you get home? Bus, Walk or Taxi?`
-           document.getElementById('main-content').append(greetingsText);
-            return greetingsText;
-            break;
-
-        case 'walk':
+function elementCreator(whatDiv, whatElement, storyContent, userInputField) {
 
 
-        case 'taxi':
+    if (userInputField) {
+        const element = document.createElement(whatElement);
+        element.innerText = `Hello ${userInputField.value}. ${storyContent}`
+        document.querySelector(whatDiv).append(element)
+        return element
+    }
+    if (!storyContent) {
+        const element = document.createElement(whatElement);
+        document.querySelector(whatDiv).append(element)
+        return element
+    } else {
+        const element = document.createElement(whatElement);
+        element.innerText = storyContent
+        document.querySelector(whatDiv).append(element)
+        return element
 
     }
-
 
 
 }
