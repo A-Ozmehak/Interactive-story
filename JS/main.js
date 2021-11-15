@@ -12,54 +12,40 @@ function addEventListeners() {
 //Tömmer innehållet i HTML'en och skapar ett p element med innehåll (sida 2)
 function onStartButton() {
     document.getElementById('main-content').innerHTML = '';
-    const pElement = document.createElement('p');
-    pElement.id = 'firstPElement';
-    pElement.innerText = `This is a strange story with many endings. Good Luck. 
-    
-    Please tell us your name in case something happens to you`;
-    const paragraphElement = document.createElement('p')
-    paragraphElement.innerText = 'Minimum of two letters'
-    paragraphElement.classList.add('paragraph-element');
-    pElement.classList.add('text-anim');
-
-    document.getElementById('main-content').append(pElement, paragraphElement);
-
+    pelementCreator('step1')
+    pelementCreator('minimum')
 
     //Skapat ett inputfält
     const userInputField = document.createElement('input');
     userInputField.id = 'nameField';
     document.getElementById('main-content').append(userInputField);
-    userInputField.addEventListener('input', () => nameInTextField(userInputField, paragraphElement, nameConfirmButton));
+    userInputField.addEventListener('input', () => nameInTextField(userInputField, nameConfirmButton));
 
     //Skapar en knapp
     const nameConfirmButton = document.createElement('button');
     nameConfirmButton.id = 'nameButton';
     document.getElementById('main-content').append(nameConfirmButton);
     nameConfirmButton.innerText = 'Done';
-    nameConfirmButton.addEventListener('click', () => startAdventure(paragraphElement, userInputField, nameConfirmButton));
+    nameConfirmButton.addEventListener('click', () => startAdventure(userInputField, nameConfirmButton));
     nameConfirmButton.setAttribute('disabled', "");
 
     //skapa ett divelement som vi sen kan tömma
-    const divElement = document.createElement('div')
-    divElement.id = 'storyContent'
-    document.getElementById('main-content').append(divElement)
+    const divElement = document.createElement('div');
+    divElement.id = 'storyContent';
+    document.getElementById('main-content').append(divElement);
 
 }
 
 //Bekräfta att användaren fyllt i sitt namn
-function nameInTextField(userInputField, paragraphElement, nameConfirmButton) {
+function nameInTextField(userInputField, nameConfirmButton) {
     if (userInputField.value.length >= 2) {
         nameConfirmButton.removeAttribute('disabled', "")
     }
 }
+
 //Text med namnet användaren fyllt i
-function startAdventure(paragraphElement, userInputField) {
-    paragraphElement.innerText = `Hello ${userInputField.value}!
-        You just moved to a new town and don't know anything about this place. 
-        One day your in town, when you look at your watch and see that it's really late 
-        and you need to get home. 
-        
-        How will you get home? Bus, Walk or Taxi?`
+function startAdventure(userInputField) {
+    pelementCreator('step2', userInputField);
 
     //gömmer textfältet för namn
     document.getElementById('nameField').style.display = 'none';
@@ -70,6 +56,8 @@ function startAdventure(paragraphElement, userInputField) {
     homeInput.id = 'inputHome';
     document.getElementById('main-content').append(homeInput);
     homeInput.addEventListener('input', () => onHomeInput(homeInput));
+
+
 }
 
 //skapat function som ger olika resultat beroende på inputen
@@ -91,21 +79,12 @@ function onHomeInput(homeInput) {
 
     } else if (homeInput.value.toUpperCase() === 'WALK') {
 
-        const pElement = document.createElement('p');
-        const divElement = document.createElement('div');
-        divElement.id = 'divContent';
-        divElement.append(pElement);
-        pElement.innerText = `Good choice you decided to walk`;
         confirmGettingHomeButton.removeAttribute('disabled', "");
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceWalk'))
 
 
     } else if (homeInput.value.toUpperCase() === 'TAXI') {
-        const pElement = document.createElement('p');
-        const divElement = document.createElement('div');
-        divElement.id = 'divContent';
-        divElement.append(pElement);
-        pElement.innerText = `Good choice you decided to take a taxi`;
+
         confirmGettingHomeButton.removeAttribute('disabled', "");
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceTaxi'))
 
@@ -172,7 +151,6 @@ function decisionToMoveOn(input) {
     document.getElementById('main-content').append(divElement);
 
 
-
     if (input === 'sleepInWoods') {
         pElement.innerText = `You are staying on the island and starts to feel around oon the ground
         for sticks so you can build yourself a shelter, and fall fast asleep.
@@ -193,9 +171,6 @@ function decisionToMoveOn(input) {
         runHomeButton.addEventListener('click', () => lastStep('runHome'));
 
     } else if (input === 'walkHome') {
-        let darkForestImg = new Image(600, 800);
-        darkForestImg.src = '/img/dark_woods.jpg';
-        document.body.appendChild(darkForestImg);
 
         pElement.innerText = `You keep walking towards your home but it's really dark
         and it's hard to see anything.
@@ -229,10 +204,6 @@ function decisionToMoveOn(input) {
 
 
     } else if (input === 'runChoice') {
-        let dogImage =  Image(800, 800);
-        dogImage.src = '/img/dog in dark.jpg';
-        document.body.appendChild(dogImage);
-
         pElement.innerText = `You start running but soon fall and hit your head on the ground.
         You turn your head and see something coming running towards you.
         
@@ -271,11 +242,6 @@ function lastStep(input) {
         THE END`;
 
     } else if (input === 'runningHome') {
-
-        let dogImage = new Image(800, 800);
-        dogImage.src = '/img/dog in dark.jpg';
-        document.body.appendChild(dogImage);
-
         pElement.innerText = `You start running but soon fall and hit your head
         on the ground.
         You turn your head and see something coming running towards you.
@@ -288,11 +254,6 @@ function lastStep(input) {
 
 
     } else if (input === 'turnAround') {
-
-        let dogImage = new Image(800, 800);
-        dogImage.src = '/img/dog in dark.jpg';
-        document.body.appendChild(dogImage);
-
         pElement.innerText = `You turn around and see the cutest dog ever running towards you.
         You bend down and it jumps in your arms and licks your face.
         
@@ -309,12 +270,46 @@ function lastStep(input) {
 }
 
 
+function pelementCreator(storyContent, userInputField) {
+    switch (storyContent) {
+        case 'step1':
+
+            const pElement = document.createElement('p');
+            pElement.innerText = story.onStartPress
+            document.getElementById('main-content').append(pElement)
+            return pElement
+        break;
+
+        case 'minimum':
+            const minimumElement = document.createElement('p');
+            minimumElement.innerText = `minimum of two letters`
+            minimumElement.classList.add('redtext')
+            document.getElementById('main-content').append(minimumElement)
+            return minimumElement
+        break;
+
+        case 'step2':
+            const greetingsText = document.createElement('p');
+            greetingsText.innerText = `Hello ${userInputField.value}!
+            You just moved to a new town and don't know anything about this place. 
+            One day your in town, when you look at your watch and see that it's really late 
+            and you need to get home. 
+            
+            How will you get home? Bus, Walk or Taxi?`
+           document.getElementById('main-content').append(greetingsText);
+            return greetingsText;
+            break;
+
+        case 'walk':
+
+
+        case 'taxi':
+
+    }
 
 
 
-
-
-
+}
 
 
 

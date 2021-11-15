@@ -28,9 +28,17 @@ h1 {
     width: 100%;
 }
 
-#firstPElement {
-    text-align: center;
+/*#firstPElement {*/
+/*    text-align: center;*/
+/*}*/
+
+.redtext {
+    color: red;
+    font-size: 1rem;
 }
+
+
+
 
 .paragraph-element {
     text-align: center;
