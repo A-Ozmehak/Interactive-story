@@ -1,7 +1,7 @@
 window.onload = main;
 
 function main() {
-    addEventListeners()
+    addEventListeners();
 }
 
 function addEventListeners() {
@@ -12,12 +12,13 @@ function addEventListeners() {
 //Tömmer innehållet i HTML'en och skapar ett p element med innehåll (sida 2)
 function onStartButton() {
     document.querySelector('.start-container').innerHTML = '';
-    elementCreator('.start-container', 'p', story.onStartPress)
-    elementCreator('.start-container', 'p', story.minimumLetters)
+    elementCreator('.start-container', 'p', story.onStartPress);
+    let minimumLetters = elementCreator('.start-container', 'p', story.minimumLetters);
+        minimumLetters.classList.add('minimumLetters');
 
     //Skapat ett inputfält med knapp
-    let userInputField = elementCreator('.start-container', 'input')
-    let nameConfirmButton = elementCreator('.start-container', 'button', 'Done')
+    let userInputField = elementCreator('.start-container', 'input');
+    let nameConfirmButton = elementCreator('.start-container', 'button', 'Done');
     nameConfirmButton.setAttribute('disabled', "");
     userInputField.addEventListener('input', () => nameInTextField(userInputField, nameConfirmButton));
     nameConfirmButton.addEventListener('click', () => afterNameInput(userInputField, nameConfirmButton));
@@ -26,7 +27,7 @@ function onStartButton() {
 //Bekräfta att användaren fyllt i sitt namn
 function nameInTextField(userInputField, nameConfirmButton) {
     if (userInputField.value.length >= 2) {
-        nameConfirmButton.removeAttribute('disabled', "")
+        nameConfirmButton.removeAttribute('disabled', "");
     } else {
         nameConfirmButton.setAttribute('disabled', "");
     }
@@ -34,148 +35,104 @@ function nameInTextField(userInputField, nameConfirmButton) {
 
 //Text med namnet användaren fyllt i
 function afterNameInput(userInputField) {
-    document.querySelector('.start-container').innerHTML = ''
+    document.querySelector('.start-container').innerHTML = '';
     elementCreator('.start-container', 'p', story.afterPlayerName, userInputField);
     let homeInput = elementCreator('.start-container', 'input')
-    let confirmGettingHomeButton = elementCreator('.start-container', 'button', 'ImReady')
+    let confirmGettingHomeButton = elementCreator('.start-container', 'button', `I'm Ready`);
     confirmGettingHomeButton.setAttribute('disabled', "");
     homeInput.addEventListener('input', () => onHomeInput(homeInput, confirmGettingHomeButton));
-    confirmGettingHomeButton.addEventListener('click', () => onHomeInput(homeInput, confirmGettingHomeButton))
+    confirmGettingHomeButton.addEventListener('click', () => onHomeInput(homeInput, confirmGettingHomeButton));
 }
 
 //skapat function som ger olika resultat beroende på inputen
 function onHomeInput(homeInput, confirmGettingHomeButton) {
     confirmGettingHomeButton.setAttribute('disabled', "");
     if (homeInput.value.toUpperCase() === 'BUS') {
-        elementCreator('.story-container', 'p', story.choiceBus)
-
+        elementCreator('.story-container', 'p', story.choiceBus);
 
     } else if (homeInput.value.toUpperCase() === 'WALK') {
 
         confirmGettingHomeButton.removeAttribute('disabled', "");
-        confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceWalk'))
-
+        confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceWalk'));
 
     } else if (homeInput.value.toUpperCase() === 'TAXI') {
 
         confirmGettingHomeButton.removeAttribute('disabled', "");
-        confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceTaxi'))
+        confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceTaxi'));
 
     }
 }
 
 function decisionToMove(choice) {
 
-    document.getElementById('main-content').innerHTML = '';
-    const pElement = document.createElement('p');
-    const divElement = document.createElement('div');
-    divElement.id = 'divContent';
-    divElement.append(pElement);
-    document.getElementById('main-content').append(divElement);
-
+    document.querySelector('.start-container').innerHTML = '';
 
     if (choice === 'choiceWalk') {
-        elementCreator(story.playerChoiceWalk)
-
-        const walkInDarkButton = document.createElement('button');
-        divElement.append(walkInDarkButton);
-        walkInDarkButton.innerText = `Keep walking towards your 
-        home in the dark`;
-        const sleepOutsideButton = document.createElement('button');
-        divElement.append(sleepOutsideButton);
-        sleepOutsideButton.innerText = `Decide to stay on the little island 
-        and live like in Cast Away`;
+        elementCreator('.story-container', 'p', story.playerChoiceWalk);
+        let walkInDarkButton = elementCreator('.story-container', 'button', 'Keep walking towards your home in the dark');
+        let sleepOutsideButton = elementCreator('.story-container', 'button', 'Decide to stay on the little island and live like in Cast Away');
 
         sleepOutsideButton.addEventListener('click', () => decisionToMoveOn('sleepInWoods'));
         walkInDarkButton.addEventListener('click', () => decisionToMoveOn('walkHome'));
 
     } else if (choice === 'choiceTaxi') {
-        elementCreator(story.playerChoiceTaxi)
-
-        const runButton = document.createElement('button');
-        divElement.append(runButton);
-        runButton.innerText = `Run`;
-        const pretendButton = document.createElement('button');
-        divElement.append(pretendButton);
-        pretendButton.innerText = `Light my cigar and pretend
-        l'm detectiv Columbo`;
+        elementCreator('.story-container', 'p', story.playerChoiceTaxi);
+        let runButton = elementCreator('.story-container', 'button', 'Run');
+        let pretendButton = elementCreator('.story-container', 'button', `Light my cigar and pretend l'm detectiv Columbo`);
 
         pretendButton.addEventListener('click', () => decisionToMoveOn('detectivChoice'));
         runButton.addEventListener('click', () => decisionToMoveOn('runChoice'));
     }
 }
 
-function decisionToMoveOn(input) {
-    document.getElementById('main-content').innerHTML = '';
-    const divElement = document.createElement('div');
-    const pElement = document.createElement('p');
-    pElement.id = 'moveOptions';
-    divElement.append(pElement);
-    document.getElementById('main-content').append(divElement);
+function decisionToMoveOn(choice) {
+    document.querySelector('.story-container').innerHTML = '';
 
-
-    if (input === 'sleepInWoods') {
-        elementCreator(story.playerSleepInWoods)
-
-        const ignoreButton = document.createElement('button');
-        divElement.append(ignoreButton);
-        ignoreButton.innerText = `Ignore them and goes outlooking for food`;
+    if (choice === 'sleepInWoods') {
+        elementCreator('.story-container', 'p', story.playerSleepInWoods);
+        let ignoreButton = elementCreator('.story-container', 'button', 'Ignore them and go out and look for food');
         ignoreButton.addEventListener('click', () => lastStep('ignores'));
 
-        const runHomeButton = document.createElement('button');
-        divElement.append(runHomeButton);
-        runHomeButton.innerText = 'Run home';
+        let runHomeButton = elementCreator('.story-container', 'button', 'Run home');
         runHomeButton.addEventListener('click', () => lastStep('runHome'));
 
-    } else if (input === 'walkHome') {
-        elementCreator(story.playerWalksHome)
-
-
-        const runButton = document.createElement('button');
-        divElement.append(runButton);
-        runButton.innerText = `Run`;
+    } else if (choice === 'walkHome') {
+        elementCreator('.story-container', 'p', story.playerWalksHome);
+        let runButton = elementCreator('.story-container', 'button', 'Run');
         runButton.addEventListener('click', () => lastStep('runningHome'));
 
-        const turnButton = document.createElement('button');
-        divElement.append(turnButton);
-        turnButton.innerText = `Turn around`;
+        let turnButton = elementCreator('.story-container', 'button', 'Turn around');
         turnButton.addEventListener('click', () => lastStep('turnAround'));
 
-    } else if (input === 'detectivChoice') {
-        elementCreator(story.playerChoiceDetective) //ingen addeventlisterner
-        divElement.style.height = '3000px';
+    } else if (choice === 'detectivChoice') {
 
-        elementCreator(story.playerScrollDown)
+        elementCreator('.story-container', 'p', story.playerChoiceDetective); //ingen addeventlisterner
 
+        elementCreator('.story-container', 'p', story.playerScrollDown);
 
-    } else if (input === 'runChoice') {
-        elementCreator(story.playerRuns)
+    } else if (choice === 'runChoice') {
+        elementCreator('.story-container', 'p', story.playerRuns);
     }
 
 }
 
-function lastStep(input) {
-    document.getElementById('main-content').innerHTML = '';
-    const divElement = document.createElement('div');
-    const pElement = document.createElement('p');
-    divElement.append(pElement);
-    document.getElementById('main-content').append(divElement);
+function lastStep(choice) {
+    document.querySelector('.story-container').innerHTML = '';
+
+    if (choice === 'ignores') {
+        elementCreator('.story-container', 'p', story.playerIgnoresPeople);
+
+    } else if (choice === 'runHome') {
+        elementCreator('.story-container', 'p', story.playerRunsHome);
+
+    } else if (choice === 'runningHome') {
+       elementCreator('.story-container', 'p', story.playerRunning);
+
+    } else if (choice === 'turnAround') {
+       elementCreator('.story-container', 'p', story.playerTurnsAround);
 
 
-    if (input === 'ignores') {
-        elementCreator(story.playerIgnoresPeople)
-
-    } else if (input === 'runHome') {
-        elementCreator(story.playerRunsHome)
-
-    } else if (input === 'runningHome') {
-        elementCreator(story.playerRunning)
-
-
-    } else if (input === 'turnAround') {
-        elementCreator(story.playerTurnsAround)
-
-    } else if (input === 'detective') { // ingen addEventlisterner än!!
+    } else if (choice === 'detective') { // ingen addEventlisterner än!!
 
     }
 }
@@ -185,19 +142,19 @@ function elementCreator(whatDiv, whatElement, storyContent, userInputField) {
 
     if (userInputField) {
         const element = document.createElement(whatElement);
-        element.innerText = `Hello ${userInputField.value}. ${storyContent}`
-        document.querySelector(whatDiv).append(element)
-        return element
+        element.innerText = `Hello ${userInputField.value}. ${storyContent}`;
+        document.querySelector(whatDiv).append(element);
+        return element;
     }
     if (!storyContent) {
         const element = document.createElement(whatElement);
-        document.querySelector(whatDiv).append(element)
-        return element
+        document.querySelector(whatDiv).append(element);
+        return element;
     } else {
         const element = document.createElement(whatElement);
-        element.innerText = storyContent
-        document.querySelector(whatDiv).append(element)
-        return element
+        element.innerText = storyContent;
+        document.querySelector(whatDiv).append(element);
+        return element;
 
     }
 

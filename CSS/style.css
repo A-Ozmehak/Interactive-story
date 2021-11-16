@@ -4,25 +4,37 @@ body {
     font-size: 30px;
 }
 
-
-
 h1 {
     font-size: 3rem;
-    align-self: center;
+   align-self: center;
 }
 
 #start-button {
-    width: 300px;
+    align-self: center;
     height: 40px;
+}
+
+.start-container  {
+    top: 150px;
+}
+
+.story-container {
+    top: 150px;
+}
+
+p {
+    align-self: center;
+    text-align: center;
+}
+
+button {
+    width: 300px;
     font-size: 2rem;
     align-self: center;
 }
 
-.start-container {
-    /*height: 30rem;*/
-    /*width: 20rem;*/
-    /*left: 35rem;*/
-    /*top: 20rem;*/
+input {
+    align-self: center;
 }
 
 .start-picture{
@@ -30,61 +42,23 @@ h1 {
     width: 100%;
 }
 
-/*#firstPElement {*/
-/*    text-align: center;*/
-/*}*/
-
-.redtext {
-    color: red;
+.minimumLetters {
     font-size: 1rem;
-}
-
-
-
-
-.paragraph-element {
-    text-align: center;
     color: red;
-    font-size: 1rem;
-}
-
-#moveOptions {
-    text-align: center;
-}
-
-#storyContent {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    text-align: center;
-    flex-direction: column;
-}
-
-#divContent {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    text-align: center;
-    flex-direction: column;
-}
-
-#storyContent {
-    /*display: inline-block;*/
 }
 
 p {
-    /*display: inline-block;*/
     overflow: hidden;
     letter-spacing: 2px;
     animation: typing 5s steps(30, end), blink, .75s step-end infinite;
     white-space: nowrap;
-    /*box-sizing: border-box;*/
+    box-sizing: border-box;
     border-right: 1px solid white;
 }
 
 @keyframes typing {
     from {
-        width: 0%
+        width: 0
     }
     to {
         width: 100%
@@ -100,10 +74,6 @@ p {
     }
 }
 
-
-
-
-
 /*Reusable classes*/
 .flex { display: flex; }
 .align-center { align-content: center; }
@@ -112,46 +82,6 @@ p {
 .relative { position: relative; }
 .absolute { position: absolute; }
 
-
-
-
-
-/*@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');*/
-
-/*body{*/
-/*    padding: 40px;*/
-/*    background-color: #121212;*/
-/*    word-wrap: normal;*/
-/*}*/
-
-/*p {*/
-/*    border-right: solid 3px rgba(0,255,0,.75);*/
-/*    white-space: nowrap;*/
-/*    overflow: hidden;*/
-/*    font-family: 'Source Code Pro', monospace;*/
-/*    font-size: 28px;*/
-/*    color: rgba(255,255,255,.70);*/
-/*}*/
-
-/*!* Animation *!*/
-/*p {*/
-/*    animation: animated-text 4s steps(29,end) 1s 1 normal both,*/
-/*    animated-cursor 600ms steps(29,end) infinite;*/
-/*}*/
-
-/*!* text animation *!*/
-
-/*@keyframes animated-text{*/
-/*    from{width: 0;}*/
-/*    to{width: 472px;}*/
-/*}*/
-
-/*!* cursor animations *!*/
-
-/*@keyframes animated-cursor{*/
-/*    from{border-right-color: rgba(0,255,0,.75);}*/
-/*    to{border-right-color: transparent;}*/
-/*}*/
 
 
 
