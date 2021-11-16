@@ -2,11 +2,12 @@ body {
     background: black;
     color: white;
     font-size: 30px;
+    /*height: 100vh;*/
 }
 
 h1 {
     font-size: 3rem;
-   align-self: center;
+    align-self: center;
 }
 
 .carPicture {
@@ -30,14 +31,6 @@ h1 {
     align-self: center;
     height: 40px;
 }
-
-/*.start-container  {*/
-/*    top: 150px;*/
-/*}*/
-
-/*.story-container {*/
-/*    top: 150px;*/
-/*}*/
 
 p {
     align-self: center;
@@ -64,30 +57,23 @@ input {
     color: red;
 }
 
-p {
+.slide-right {
+    width: 100%;
     overflow: hidden;
-    letter-spacing: 2px;
-    animation: typing 5s steps(30, end), blink, .75s step-end infinite;
-    white-space: nowrap;
-    box-sizing: border-box;
-    border-right: 1px solid white;
 }
 
-@keyframes typing {
+.slide-right p {
+    animation: 6s slide-right;
+}
+
+@keyframes slide-right {
     from {
-        width: 0
+        margin-left: -100%;
+        width: 300%;
     }
     to {
-        width: 100%
-    }
-}
-
-@keyframes blink {
-    from, to {
-        border-color: transparent
-    }
-    50% {
-        border-color: orange;
+        margin-left: 0;
+        width: 100%;
     }
 }
 
