@@ -48,15 +48,16 @@ function afterNameInput(userInputField) {
 function onHomeInput(homeInput, confirmGettingHomeButton) {
     confirmGettingHomeButton.setAttribute('disabled', "");
     if (homeInput.value.toUpperCase() === 'BUS') {
+        document.querySelector('.story-container').innerHTML = "";
         elementCreator('.story-container', 'p', story.choiceBus);
 
     } else if (homeInput.value.toUpperCase() === 'WALK') {
-
+        document.querySelector('.story-container').innerHTML = "";
         confirmGettingHomeButton.removeAttribute('disabled', "");
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceWalk'));
 
     } else if (homeInput.value.toUpperCase() === 'TAXI') {
-
+        document.querySelector('.story-container').innerHTML = "";
         confirmGettingHomeButton.removeAttribute('disabled', "");
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceTaxi'));
 
@@ -76,9 +77,13 @@ function decisionToMove(choice) {
         walkInDarkButton.addEventListener('click', () => decisionToMoveOn('walkHome'));
 
     } else if (choice === 'choiceTaxi') {
+        let headlightsCar = elementCreator('.story-container', 'img');
+        headlightsCar.src = './img/headlightsnight.jpg';
+        headlightsCar.classList.add('carPicture');
         elementCreator('.story-container', 'p', story.playerChoiceTaxi);
         let runButton = elementCreator('.story-container', 'button', 'Run');
         let pretendButton = elementCreator('.story-container', 'button', `Light my cigar and pretend l'm detectiv Columbo`);
+
 
         pretendButton.addEventListener('click', () => decisionToMoveOn('detectivChoice'));
         runButton.addEventListener('click', () => decisionToMoveOn('runChoice'));
@@ -89,9 +94,14 @@ function decisionToMoveOn(choice) {
     document.querySelector('.story-container').innerHTML = '';
 
     if (choice === 'sleepInWoods') {
+        let picOfBench = elementCreator('.story-container', 'img');
+        picOfBench.src = './img/darkbench.jpg';
+        picOfBench.classList.add('imgOfBench');
+
         elementCreator('.story-container', 'p', story.playerSleepInWoods);
         let ignoreButton = elementCreator('.story-container', 'button', 'Ignore them and go out and look for food');
         ignoreButton.addEventListener('click', () => lastStep('ignores'));
+
 
         let runHomeButton = elementCreator('.story-container', 'button', 'Run home');
         runHomeButton.addEventListener('click', () => lastStep('runHome'));
@@ -111,7 +121,12 @@ function decisionToMoveOn(choice) {
         elementCreator('.story-container', 'p', story.playerScrollDown);
 
     } else if (choice === 'runChoice') {
+        let doggie = elementCreator('.story-container', 'img');
+        doggie.src = './img/dogindark.jpg';
+        doggie.classList.add('dogPicture');
+
         elementCreator('.story-container', 'p', story.playerRuns);
+
     }
 
 }
@@ -126,9 +141,16 @@ function lastStep(choice) {
         elementCreator('.story-container', 'p', story.playerRunsHome);
 
     } else if (choice === 'runningHome') {
+        let dogPicture = elementCreator('.story-container', 'img');
+        dogPicture.src = './img/dogindark.jpg';
+        dogPicture.classList.add('dogPicture');
        elementCreator('.story-container', 'p', story.playerRunning);
 
+
     } else if (choice === 'turnAround') {
+        let dogPic = elementCreator('.story-container', 'img');
+        dogPic.src = './img/dogindark.jpg';
+        dogPic.classList.add('dogPicture');
        elementCreator('.story-container', 'p', story.playerTurnsAround);
 
 

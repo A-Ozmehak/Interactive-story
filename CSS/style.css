@@ -9,18 +9,35 @@ h1 {
    align-self: center;
 }
 
+.carPicture {
+    height: 500px;
+    width: 800px;
+    align-self: center;
+}
+
+.dogPicture {
+    height: 500px;
+    width: 800px;
+    align-self: center;
+}
+.imgOfBench {
+    height: 500px;
+    width: 800px;
+    align-self: center;
+}
+
 #start-button {
     align-self: center;
     height: 40px;
 }
 
-.start-container  {
-    top: 150px;
-}
+/*.start-container  {*/
+/*    top: 150px;*/
+/*}*/
 
-.story-container {
-    top: 150px;
-}
+/*.story-container {*/
+/*    top: 150px;*/
+/*}*/
 
 p {
     align-self: center;
