@@ -70,16 +70,20 @@ const story = {
                     
                     You slowly walk towards him and asks if he's ok.
                     The man turns his head and 
-                    see that he's just taking a leak,
-                    you ask if he could drive you home.
+                    see that he's just taking a leak.
+                    
+                    You ask if he could drive you home.
                     He nods his head and you walk over to the car,
-                    and you get safely home
+                    and you get safely home.
                     THE END`,
 
-    playerRuns: `You start running but fall and hit your head on the ground.
-                    You turn your head and see something running towards you.
+    playerRuns: `You start running but fall and 
+                    hit your head on the ground.
+                    You turn your head and see something 
+                    running towards you.
                 
-                    Soon you can see that it's a really cute dog coming towards you 
+                    Soon you can see that it's a really 
+                    cute dog coming towards you 
                     and starts licking your face. 
                     You forget about the pain and the blood 
                     and you and the dog
@@ -96,7 +100,8 @@ const story = {
                     THE END`,
 
     playerRunsHome: `You start running home and when you finally
-                    gets inside your door, you start thinking that maybe you should
+                    gets inside your door, 
+                    you start thinking that maybe you should
                     move somewhere else.
                     
                     THE END`,

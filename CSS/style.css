@@ -21,9 +21,60 @@ main {
     height: 100vh;
 }
 
+.slide-right {
+    width: 100%;
+    overflow: hidden;
+}
+
+.slide-right p {
+    animation: 6s slide-right;
+}
+
+@keyframes slide-right {
+    from {
+        margin-left: -100%;
+        width: 300%;
+    }
+    to {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+#start-button {
+    height: 40px;
+}
+
+p {
+    text-align: center;
+}
+
+.minimumLetters {
+    font-size: 1rem;
+    color: red;
+}
+
+button {
+    width: 300px;
+    font-size: 2rem;
+}
+
+input {
+    height: 1.5rem;
+}
+
+.carPicture, .dogPicture, .imgOfBench, button, input, span {
+    align-self: center;
+}
+
+.carPicture, .dogPicture, .imgOfBench {
+    height: 30rem;
+    width: 40rem;
+}
+
 /*Effect on title*/
 .title {
-    letter-spacing: 0.7em;
+    letter-spacing: 0.5em;
 }
 
 .title > span {
@@ -34,24 +85,26 @@ span {
     font-size: 3rem;
 }
 
-#U {
+#letterX {
     opacity: 1;
     animation: flickerI 2s linear reverse infinite;
 }
 
-#U::after {
+#letterX::after {
     content: '';
     width: 150%;
-    -webkit-box-shadow: -35px 0px 60px 8px rgba(255,255,255,1);
-    -moz-box-shadow: -35px 0px 60px 8px rgba(255,255,255,1);
-    box-shadow: -35px 0px 60px 8px rgba(255,255,255,1);
+    -webkit-box-shadow: -35px 0 60px 8px rgba(255,255,255,1);
+    -moz-box-shadow: -35px 0 60px 8px rgba(255,255,255,1);
+    box-shadow: -35px 0 60px 8px rgba(255,255,255,1);
 }
-#E, #N {
-    animation: flickerEN 2s linear reverse infinite;
+
+#letterD, #letterN {
+    animation: flickerN 2s linear reverse infinite;
     position: relative;
 }
-#E::after,
-#E::before  {
+
+#letterD::after,
+#letterD::before  {
     content:' ';
     width: 100px;
     height: 100px;
@@ -64,7 +117,7 @@ span {
     filter: blur(10px);
 }
 
-#E::after {
+#letterD::after {
     width: 200px;
     height: 200px;
     top: -150%;
@@ -72,12 +125,15 @@ span {
     opacity: 0.1;
     filter: blur(10px);
 }
-#X {
+
+#letterU {
     animation: flickerX 2s linear reverse infinite
 }
-#Te {
-    animation: flickerTe 2s linear reverse infinite
+
+#letterT {
+    animation: flickerT 2s linear reverse infinite
 }
+
 @keyframes flickerU {
     0% {
         opacity: 0.4;
@@ -123,7 +179,7 @@ span {
     }
 }
 
-@keyframes flickerEN {
+@keyframes flickerN {
     0% {
         opacity: 0.19;
     }
@@ -213,7 +269,7 @@ span {
     }
 }
 
-@keyframes flickerTe{
+@keyframes flickerT{
     0% {
         opacity: 0.01;
     }
@@ -258,63 +314,32 @@ span {
     }
 }
 
-#start-button {
-    height: 40px;
-}
 
-p {
-    text-align: center;
-}
 
-.minimumLetters {
-    font-size: 1rem;
-    color: red;
-}
-
-button {
-    width: 300px;
-    font-size: 2rem;
-}
-
-input {
-    height: 1.5rem;
-}
-
-.carPicture, .dogPicture, .imgOfBench, button, input, span {
-    align-self: center;
-}
-
-.carPicture, .dogPicture, .imgOfBench {
-    height: 30rem;
-    width: 50rem;
-}
-
-@media screen and (min-width: 360px){
+@media screen and (max-width: 500px){
     .carPicture, .dogPicture, .imgOfBench {
         height: 15rem;
         width: 20rem;
     }
+
+    body {
+        font-size: 20px;
+    }
+
+    button {
+        width: 200px;
+        font-size: 1rem;
+    }
+
+    .title {
+        font-size: 1px;
+    }
+    .story-container {
+        width: 350px;
+    }
 }
 
-/*.slide-right {*/
-/*    width: 100%;*/
-/*    overflow: hidden;*/
-/*}*/
 
-/*.slide-right p {*/
-/*    animation: 6s slide-right;*/
-/*}*/
-
-/*@keyframes slide-right {*/
-/*    from {*/
-/*        margin-left: -100%;*/
-/*        width: 300%;*/
-/*    }*/
-/*    to {*/
-/*        margin-left: 0;*/
-/*        width: 100%;*/
-/*    }*/
-/*}*/
 
 
 
