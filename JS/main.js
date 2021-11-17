@@ -1,7 +1,7 @@
 window.onload = main;
 
 /**
- *
+ * gör så att nästa function körs när DOMen har laddat klart
  */
 function main() {
     addEventListeners();
@@ -85,7 +85,6 @@ function onHomeInput(homeInput, confirmGettingHomeButton) {
         document.querySelector('.story-container').innerHTML = '';
         confirmGettingHomeButton.removeAttribute('disabled', '');
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceTaxi'));
-
     }
 }
 
