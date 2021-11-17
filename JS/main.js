@@ -14,7 +14,8 @@ function onStartButton() {
     document.querySelector('.start-container').innerHTML = '';
     elementCreator('.start-container', 'p', story.onStartPress);
     let minimumLetters = elementCreator('.start-container', 'p', story.minimumLetters);
-        minimumLetters.classList.add('minimumLetters');
+    minimumLetters.classList.add('minimumLetters');
+
 
     //Skapat ett inputfält med knapp
     let userInputField = elementCreator('.start-container', 'input');
@@ -47,9 +48,11 @@ function afterNameInput(userInputField) {
 //skapat function som ger olika resultat beroende på inputen
 function onHomeInput(homeInput, confirmGettingHomeButton) {
     confirmGettingHomeButton.setAttribute('disabled', '');
+
     if (homeInput.value.toUpperCase() === 'BUS') {
         document.querySelector('.story-container').innerHTML = '';
         elementCreator('.story-container', 'p', story.choiceBus);
+
 
     } else if (homeInput.value.toUpperCase() === 'WALK') {
         document.querySelector('.story-container').innerHTML = '';
@@ -108,6 +111,7 @@ function decisionToMoveOn(choice) {
 
     } else if (choice === 'walkHome') {
         elementCreator('.story-container', 'p', story.playerWalksHome);
+
         let runButton = elementCreator('.story-container', 'button', story.runs);
         runButton.addEventListener('click', () => lastStep('runningHome'));
 
@@ -176,12 +180,23 @@ function elementCreator(whatDiv, whatElement, storyContent, userInputField) {
         element.innerText = storyContent;
         document.querySelector(whatDiv).append(element);
         return element;
-
     }
-
-
 }
 
+
+
+// function printText(text, whatelement) {
+//     let index = 0
+//     let speed = 50
+//     console.log(whatelement)
+//     if (index < text.length){
+//         whatelement.innerText += text.charAt(index)
+//         index++
+//         setTimeout(printText, speed)
+//         //return whatelement
+//     }
+//     printText(story.minimumLetters, minimumLetters)
+// }
 
 
 

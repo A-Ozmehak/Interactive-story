@@ -65,7 +65,7 @@ const story = {
                     pocket and light it,
                     and start pretending your detective Columbo. 
                     
-                    You look around you for clues and 
+                    You look around for clues and 
                     soon see a man standing in a alley close by.
                     
                     You slowly walk towards him and asks if he's ok.
