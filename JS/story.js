@@ -1,3 +1,11 @@
+/**
+ *
+ * @type {{afterPlayerName: string, playerRuns: string, onStartPress: string, playerChoiceTaxi: string, playerTurnsAround: string,
+ * playerRunsHome: string, run: string, choiceBus: string, turnAround: string, playerChoiceWalk: string, playerRunning: string,
+ * walkInDark: string, playerSleepInWoods: string, playerWalksHome: string, playerChoiceDetective: string, pretendDetectiv: string,
+ * ready: string, runHome: string, minimumLetters: string, ignore: string, runs: string, playerIgnoresPeople: string, sleepOutside: string}}
+ */
+
 const story = {
     onStartPress: `This is a strange story 
                    with many different endings. 
