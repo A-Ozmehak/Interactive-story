@@ -1,5 +1,5 @@
 Laboration 1
-# Interactive-story - A crazy story!
+# Interactive-story - Unexpected
 
 Beskrivining
 Jag har fått i uppgift att göra en textbaserad interaktiv upplevelse med hjälp av JavaScript.
@@ -8,8 +8,11 @@ Den har flera olika slut och det finns alltid minst två alternativ som leder ti
 
 Uppbyggnad 
 De flesta element på sidan är skapade med hjälp av JavaScript, som är placerade i en av två olika divar. 
-Input-fälten har jag satt "addEventListerner" på så när användaren fyller i fälten så läser den av det och leder de vidare.
-Knappar har jag använt så att användaren ska kunna ta olika vägar i historien. 
+Jag gjorde en function längst ner i main.js som heter elementCreator, som jag sedan i de andra functionerna kan "kalla" på och skapa upp rätt element med rätt innehåll.
+Input-fälten och knapparna har jag satt "addEventListerner" på så när användaren fyller i fälten eller trycker på knappar så läser den av det och leder de vidare till olika steg i historien.
+
+Jag har även gjort en mediaquery för mindre skärmstorlek.
+
 
 
 
