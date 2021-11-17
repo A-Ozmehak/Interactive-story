@@ -21,26 +21,6 @@ main {
     height: 100vh;
 }
 
-.slide-right {
-    width: 100%;
-    overflow: hidden;
-}
-
-.slide-right p {
-    animation: 6s slide-right;
-}
-
-@keyframes slide-right {
-    from {
-        margin-left: -100%;
-        width: 300%;
-    }
-    to {
-        margin-left: 0;
-        width: 100%;
-    }
-}
-
 #start-button {
     height: 40px;
 }
@@ -70,6 +50,25 @@ input {
 .carPicture, .dogPicture, .imgOfBench {
     height: 30rem;
     width: 40rem;
+}
+/*slidar in texten*/
+.slide-right {
+    width: 100%;
+    overflow: hidden;
+    margin-left: auto;
+}
+
+.slide-right p {
+    animation: 2s slide-right;
+}
+
+@keyframes slide-right {
+    from {
+        margin-left: -500%;
+    }
+    to {
+        margin-left: 0;
+    }
 }
 
 /*Effect on title*/
@@ -127,11 +126,11 @@ span {
 }
 
 #letterU {
-    animation: flickerX 2s linear reverse infinite
+    animation: flickerX 2s linear reverse infinite;
 }
 
 #letterT {
-    animation: flickerT 2s linear reverse infinite
+    animation: flickerT 2s linear reverse infinite;
 }
 
 @keyframes flickerU {
@@ -314,6 +313,32 @@ span {
     }
 }
 
+@media screen and (max-width: 900px){
+    /*  slideeffekt på texten*/
+    .slide-right {
+        width: 100%;
+        overflow: hidden;
+        margin-left: auto;
+    }
+
+    .slide-right p {
+        animation: 2s slide-right;
+    }
+
+    @keyframes slide-right {
+        from {
+            margin-left: -200%;
+        }
+        to {
+            margin-left: 0;
+        }
+    }
+
+    .carPicture, .dogPicture, .imgOfBench {
+        height: 30rem;
+        width: 30rem;
+    }
+}
 
 
 @media screen and (max-width: 500px){
@@ -335,7 +360,26 @@ span {
         font-size: 1px;
     }
     .story-container {
-        width: 350px;
+    }
+
+  /*  slideeffekt på texten*/
+    .slide-right {
+        width: 100%;
+        overflow: hidden;
+        margin-left: auto;
+    }
+
+    .slide-right p {
+        animation: 2s slide-right;
+    }
+
+    @keyframes slide-right {
+        from {
+            margin-left: -400%;
+        }
+        to {
+            margin-left: 0;
+        }
     }
 }
 

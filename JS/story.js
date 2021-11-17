@@ -1,5 +1,5 @@
 /**
- *
+ *  allt textinnehåll som hämtas i functionerna
  * @type {{afterPlayerName: string, playerRuns: string, onStartPress: string, playerChoiceTaxi: string, playerTurnsAround: string,
  * playerRunsHome: string, run: string, choiceBus: string, turnAround: string, playerChoiceWalk: string, playerRunning: string,
  * walkInDark: string, playerSleepInWoods: string, playerWalksHome: string, playerChoiceDetective: string, pretendDetectiv: string,
