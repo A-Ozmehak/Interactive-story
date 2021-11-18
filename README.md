@@ -13,6 +13,6 @@ Input-fälten och knapparna har jag satt "addEventListerner" på så när använ
 
 Jag har även gjort en mediaquery för mindre skärmstorlek.
 
-[Demo] (https://a-ozmehak.github.io/Interactive-story/)
+
 
 
