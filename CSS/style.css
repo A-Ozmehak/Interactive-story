@@ -27,9 +27,8 @@ main {
 }
 
 p {
-   width: 550px;
+    width: 700px;
     align-self: center;
-
 }
 
 .minimumLetters {
@@ -47,13 +46,18 @@ input {
     height: 1.5rem;
 }
 
-.carPicture, .dogPicture, .imgOfBench, button, input, span {
+.carPicture, .dogPicture, .imgOfBench, .imgOfColumbo, .imgOfBerries, button, input, span {
     align-self: center;
 }
 
-.carPicture, .dogPicture, .imgOfBench {
+.carPicture, .dogPicture, .imgOfBench, .imgOfBerries {
     height: 30rem;
     width: 40rem;
+}
+
+.imgOfColumbo {
+    height: 50rem;
+    width: 30rem;
 }
 
 /*Effect on title*/
@@ -300,20 +304,25 @@ span {
 }
 
 @media screen and (max-width: 900px){
-    .carPicture, .dogPicture, .imgOfBench {
+    .carPicture, .dogPicture, .imgOfBench, .imgOfColumbo, .imgOfBerries {
         height: 30rem;
         width: 30rem;
     }
 
     p {
-        width: 400px;
+        width: 500px;
     }
 }
 
 
 @media screen and (max-width: 500px){
-    .carPicture, .dogPicture, .imgOfBench {
+    .carPicture, .dogPicture, .imgOfBench, .imgOfBerries {
         height: 15rem;
+        width: 20rem;
+    }
+
+    .imgOfColumbo {
+        height: 25rem;
         width: 20rem;
     }
 
@@ -333,9 +342,10 @@ span {
     .title {
         font-size: 1px;
     }
-    .story-container {
-    }
 
+    main{
+        overflow: hidden;
+    }
 
 }
 

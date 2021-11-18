@@ -1,8 +1,8 @@
 /**
- *  allt textinnehåll som hämtas i functionerna
+ *  All the text that is being fetched by the functions
  * @type {{afterPlayerName: string, playerRuns: string, onStartPress: string, playerChoiceTaxi: string, playerTurnsAround: string,
  * playerRunsHome: string, run: string, choiceBus: string, turnAround: string, playerChoiceWalk: string, playerRunning: string,
- * walkInDark: string, playerSleepInWoods: string, playerWalksHome: string, playerChoiceDetective: string, pretendDetectiv: string,
+ * walkInDark: string, playerSleepInWoods: string, playerWalksHome: string, playerChoiceDetective: string, pretendDetective: string,
  * ready: string, runHome: string, minimumLetters: string, ignore: string, runs: string, playerIgnoresPeople: string, sleepOutside: string}}
  */
 
@@ -12,29 +12,25 @@ const story = {
                    Good Luck. 
     
                    Please tell us your name in case 
-                   something happens to you`,
+                   something happens to you.`,
 
     minimumLetters: `Minimum of two letters.`,
 
     afterPlayerName: `
                     You just moved to a new town and 
                     don't know anything about this place.
-                    One day your in town, 
-                    and when you look at your watch 
-                    you see that it's really late and 
+                    One night you are in town and 
+                    realise that it's really late and 
                     you need to get home.
                     
                     How will you get home? 
                     Bus, Walk or Taxi?`,
-    choiceBus: `There are no more buses coming today`,
+    choiceBus: `There are no more buses coming today.`,
 
-    playerChoiceWalk: `You decided to walk home, 
-                    and starts walking towards your home
-                    that is about an hour away.
-                    It's really dark outside and 
-                    you walk over a little bridge to an island
-                    you have to walk over to get to your home, 
-                    but you can't see anything.
+    playerChoiceWalk: `You decided to walk home.
+                    
+                    It's really dark outside and
+                    you can't see anything.
         
                     What do you do?`,
 
@@ -49,7 +45,7 @@ const story = {
                 
                     What do you do?`,
 
-    playerSleepInWoods: `You are staying on the island and 
+    playerSleepInWoods: `You decided to sleep in the woods and 
                     starts to feel around on the ground
                     for sticks so you can build yourself a shelter, 
                     and fall fast asleep.
@@ -60,8 +56,7 @@ const story = {
                     What do you do?`,
 
     playerWalksHome: `You keep walking towards your home 
-                    but it's really dark
-                    and really hard to see anything.
+                    in the dark.
                     
                     You start hearing footsteps behind you, 
                     so you start walking faster.
@@ -93,16 +88,16 @@ const story = {
                     Soon you can see that it's a really 
                     cute dog coming towards you 
                     and starts licking your face. 
-                    You forget about the pain and the blood 
+                    You forget about the pain
                     and you and the dog
-                    walks home together.
+                    walk home together.
                     You and the dog live happy ever after.
                     
                     THE END`,
 
     playerIgnoresPeople: `You look at the mass of people and frown,
                     and goes out looking for something to eat. 
-                    You find some berries and some moss and live happily
+                    You find some berries and some moss and live happy
                     ever after.
                     
                     THE END`,
@@ -114,7 +109,7 @@ const story = {
                     
                     THE END`,
 
-    playerRunning: `You start running but soon fall and hit your head
+    playerRunning: `You start running but fall and hit your head
                     on the ground.
                     You turn your head and see something
                     running towards you.
@@ -143,9 +138,9 @@ const story = {
 
     walkInDark: `Keep walking towards your home in the dark`,
 
-    sleepOutside: `Decide to stay on the little island and live like in Cast Away`,
+    sleepOutside: `Decide to sleep in the woods`,
 
-    pretendDetectiv: `Light my cigar and pretend l'm detectiv Columbo`,
+    pretendDetective: `Light my cigar and pretend l'm detective Columbo`,
 
     run: `Run`,
 

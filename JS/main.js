@@ -22,17 +22,15 @@ function addEventListeners() {
 function onStartButton() {
 
     document.querySelector('.start-container').innerHTML = '';
-    slowTextAnimation(elementCreator('.start-container', 'p', story.onStartPress))
-    let minimumLetters = elementCreator('.start-container', 'p', story.minimumLetters)
+    slowTextAnimation(elementCreator('.start-container', 'p', story.onStartPress));
+    let minimumLetters = elementCreator('.start-container', 'p', story.minimumLetters);
     minimumLetters.classList.add('minimumLetters');
-
-
 
     let userInputField = elementCreator('.start-container', 'input');
     let nameConfirmButton = elementCreator('.start-container', 'button', 'Done');
     nameConfirmButton.setAttribute('disabled', '');
     userInputField.addEventListener('input', () => nameInTextField(userInputField, nameConfirmButton));
-    nameConfirmButton.addEventListener('click', () => afterNameInput(nameConfirmButton));
+    nameConfirmButton.addEventListener('click', () => afterNameInput(userInputField));
 }
 
 /**
@@ -43,7 +41,7 @@ function onStartButton() {
 
 function nameInTextField(userInputField, nameConfirmButton) {
     if (userInputField.value.length >= 2) {
-        nameConfirmButton.removeAttribute('disabled');
+        nameConfirmButton.removeAttribute('disabled', '');
     } else {
         nameConfirmButton.setAttribute('disabled', '');
     }
@@ -56,8 +54,8 @@ function nameInTextField(userInputField, nameConfirmButton) {
 
 function afterNameInput(userInputField) {
     document.querySelector('.start-container').innerHTML = '';
-    slowTextAnimation(elementCreator('.start-container', 'p', story.afterPlayerName, userInputField))
-    let homeInput = elementCreator('.start-container', 'input')
+    slowTextAnimation(elementCreator('.start-container', 'p', story.afterPlayerName, userInputField));
+    let homeInput = elementCreator('.start-container', 'input');
     let confirmGettingHomeButton = elementCreator('.start-container', 'button', story.ready);
     confirmGettingHomeButton.setAttribute('disabled', '');
     homeInput.addEventListener('input', () => onHomeInput(homeInput, confirmGettingHomeButton));
@@ -75,16 +73,16 @@ function onHomeInput(homeInput, confirmGettingHomeButton) {
 
     if (homeInput.value.toUpperCase() === 'BUS') {
         document.querySelector('.story-container').innerHTML = '';
-        slowTextAnimation(elementCreator('.story-container', 'p', story.choiceBus))
+        slowTextAnimation(elementCreator('.story-container', 'p', story.choiceBus));
 
     } else if (homeInput.value.toUpperCase() === 'WALK') {
         document.querySelector('.story-container').innerHTML = '';
-        confirmGettingHomeButton.removeAttribute('disabled');
+        confirmGettingHomeButton.removeAttribute('disabled', '');
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceWalk'));
 
     } else if (homeInput.value.toUpperCase() === 'TAXI') {
         document.querySelector('.story-container').innerHTML = '';
-        confirmGettingHomeButton.removeAttribute('disabled');
+        confirmGettingHomeButton.removeAttribute('disabled', '');
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceTaxi'));
     }
 }
@@ -99,7 +97,7 @@ function decisionToMove(choice) {
     document.querySelector('.start-container').innerHTML = '';
 
     if (choice === 'choiceWalk') {
-        slowTextAnimation(elementCreator('.story-container', 'p', story.playerChoiceWalk))
+        slowTextAnimation(elementCreator('.story-container', 'p', story.playerChoiceWalk));
         let walkInDarkButton = elementCreator('.story-container', 'button', story.walkInDark);
         let sleepOutsideButton = elementCreator('.story-container', 'button', story.sleepOutside);
 
@@ -110,9 +108,9 @@ function decisionToMove(choice) {
         let headlightsCar = elementCreator('.story-container', 'img');
         headlightsCar.src = './img/headlightsnight.jpg';
         headlightsCar.classList.add('carPicture');
-        slowTextAnimation(elementCreator('.story-container', 'p', story.playerChoiceTaxi))
+        slowTextAnimation(elementCreator('.story-container', 'p', story.playerChoiceTaxi));
         let runButton = elementCreator('.story-container', 'button', story.run);
-        let pretendButton = elementCreator('.story-container', 'button', story.pretendDetectiv);
+        let pretendButton = elementCreator('.story-container', 'button', story.pretendDetective);
 
         pretendButton.addEventListener('click', () => decisionToMoveOn('detectiveChoice'));
         runButton.addEventListener('click', () => decisionToMoveOn('runChoice'));
@@ -132,7 +130,7 @@ function decisionToMoveOn(choice) {
         picOfBench.src = './img/darkbench.jpg';
         picOfBench.classList.add('imgOfBench');
 
-        slowTextAnimation(elementCreator('.story-container', 'p', story.playerSleepInWoods))
+        slowTextAnimation(elementCreator('.story-container', 'p', story.playerSleepInWoods));
         let ignoreButton = elementCreator('.story-container', 'button', story.ignore);
         ignoreButton.addEventListener('click', () => lastStep('ignores'));
 
@@ -140,7 +138,7 @@ function decisionToMoveOn(choice) {
         runHomeButton.addEventListener('click', () => lastStep('runHome'));
 
     } else if (choice === 'walkHome') {
-        slowTextAnimation(elementCreator('.story-container', 'p', story.playerWalksHome))
+        slowTextAnimation(elementCreator('.story-container', 'p', story.playerWalksHome));
 
         let runButton = elementCreator('.story-container', 'button', story.runs);
         runButton.addEventListener('click', () => lastStep('runningHome'));
@@ -149,15 +147,18 @@ function decisionToMoveOn(choice) {
         turnButton.addEventListener('click', () => lastStep('turnAround'));
 
     } else if (choice === 'detectiveChoice') {
+        let columboPic = elementCreator('.story-container', 'img');
+        columboPic.src = './img/columbo.jpg';
+        columboPic.classList.add('imgOfColumbo');
 
-        slowTextAnimation(elementCreator('.story-container', 'p', story.playerChoiceDetective))
+        slowTextAnimation(elementCreator('.story-container', 'p', story.playerChoiceDetective));
 
     } else if (choice === 'runChoice') {
         let doggie = elementCreator('.story-container', 'img');
         doggie.src = './img/dogindark.jpg';
         doggie.classList.add('dogPicture');
 
-        slowTextAnimation(elementCreator('.story-container', 'p', story.playerRuns))
+        slowTextAnimation(elementCreator('.story-container', 'p', story.playerRuns));
     }
 }
 
@@ -170,22 +171,26 @@ function lastStep(choice) {
     document.querySelector('.story-container').innerHTML = '';
 
     if (choice === 'ignores') {
-        slowTextAnimation(elementCreator('.story-container', 'p', story.playerIgnoresPeople))
+        let berryPic = elementCreator('.story-container', 'img');
+        berryPic.src = './img/berries.jpg';
+        berryPic.classList.add('imgOfBerries');
+
+        slowTextAnimation(elementCreator('.story-container', 'p', story.playerIgnoresPeople));
 
     } else if (choice === 'runHome') {
-        slowTextAnimation(elementCreator('.story-container', 'p', story.playerRunsHome))
+        slowTextAnimation(elementCreator('.story-container', 'p', story.playerRunsHome));
 
     } else if (choice === 'runningHome') {
         let dogPicture = elementCreator('.story-container', 'img');
         dogPicture.src = './img/dogindark.jpg';
         dogPicture.classList.add('dogPicture');
-        slowTextAnimation(elementCreator('.story-container', 'p', story.playerRunning))
+        slowTextAnimation(elementCreator('.story-container', 'p', story.playerRunning));
 
     } else if (choice === 'turnAround') {
         let dogPic = elementCreator('.story-container', 'img');
         dogPic.src = './img/dogindark.jpg';
         dogPic.classList.add('dogPicture');
-        slowTextAnimation(elementCreator('.story-container', 'p', story.playerTurnsAround))
+        slowTextAnimation(elementCreator('.story-container', 'p', story.playerTurnsAround));
 
     } else if (choice === 'detective') {
 
