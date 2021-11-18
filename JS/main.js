@@ -1,14 +1,14 @@
 window.onload = main;
 
 /**
- * gör så att nästa function körs när DOMen har laddat klart
+ * Makes the next function run when the DOM is done loading
  */
 function main() {
     addEventListeners();
 }
 
 /**
- * knappen för att starta spelet
+ * The button that starts the game
  */
 function addEventListeners() {
     const startButton = document.getElementById('start-button');
@@ -16,7 +16,7 @@ function addEventListeners() {
 }
 
 /**
- * När användaren trycker på start, så töms HTML innehållet och skapar ett inputfält som användaren fyller i sitt namn
+ * When the user press start, it empties the HTML and prints text in paragraphs and creates a input field and a button
  */
 
 function onStartButton() {
@@ -27,31 +27,31 @@ function onStartButton() {
     minimumLetters.classList.add('minimumLetters');
 
 
-    //Skapat ett inputfält med knapp
+
     let userInputField = elementCreator('.start-container', 'input');
     let nameConfirmButton = elementCreator('.start-container', 'button', 'Done');
     nameConfirmButton.setAttribute('disabled', '');
     userInputField.addEventListener('input', () => nameInTextField(userInputField, nameConfirmButton));
-    nameConfirmButton.addEventListener('click', () => afterNameInput(userInputField, nameConfirmButton));
+    nameConfirmButton.addEventListener('click', () => afterNameInput(nameConfirmButton));
 }
 
 /**
- * Kontrollerar att användaren fyllt i sitt namn och så aktiveras knappen
- * @param {HTMLInputElement} userInputField - inputfält för användaren att fylla i
- * @param {HTMLButtonElement} nameConfirmButton - knapp att använda för att gå vidare
+ * Controls that the user as enter a name and enables the button
+ * @param {HTMLInputElement} userInputField Input field for the user to enter something
+ * @param {HTMLButtonElement} nameConfirmButton A button to move forward
  */
 
 function nameInTextField(userInputField, nameConfirmButton) {
     if (userInputField.value.length >= 2) {
-        nameConfirmButton.removeAttribute('disabled', '');
+        nameConfirmButton.removeAttribute('disabled');
     } else {
         nameConfirmButton.setAttribute('disabled', '');
     }
 }
 
 /**
- * Skapat ett input fält som användaren kan skriva in sitt första val och sedan tryck på en knapp
- * @param {HTMLInputElement} userInputField - inputfält för användaren att fylla i
+ * Creates an input field for the user to enter a choice and a button
+ * @param {HTMLInputElement} userInputField Input field for the user
  */
 
 function afterNameInput(userInputField) {
@@ -65,12 +65,11 @@ function afterNameInput(userInputField) {
 }
 
 /**
- * function som beroende på användarens val ger olika resultat
- * @param {HTMLInputElement} homeInput - inputfält som användaren skriver sitt val
- * @param {HTMLButtonElement} confirmGettingHomeButton - knapp för att gå vidare
+ * Function that depending on the users choice gives different results
+ * @param {HTMLInputElement} homeInput Input field for the user to enter a choice
+ * @param {HTMLButtonElement} confirmGettingHomeButton Button to move on
  */
 
-//skapat function som ger olika resultat beroende på inputen
 function onHomeInput(homeInput, confirmGettingHomeButton) {
     confirmGettingHomeButton.setAttribute('disabled', '');
 
@@ -80,19 +79,19 @@ function onHomeInput(homeInput, confirmGettingHomeButton) {
 
     } else if (homeInput.value.toUpperCase() === 'WALK') {
         document.querySelector('.story-container').innerHTML = '';
-        confirmGettingHomeButton.removeAttribute('disabled', '');
+        confirmGettingHomeButton.removeAttribute('disabled');
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceWalk'));
 
     } else if (homeInput.value.toUpperCase() === 'TAXI') {
         document.querySelector('.story-container').innerHTML = '';
-        confirmGettingHomeButton.removeAttribute('disabled', '');
+        confirmGettingHomeButton.removeAttribute('disabled');
         confirmGettingHomeButton.addEventListener('click', () => decisionToMove('choiceTaxi'));
     }
 }
 
 /**
- * function som beroende på användarens val ger olika resultat
- * @param {string} choice - valet användaren gör
+ * Function that depending on the users choice gives different results
+ * @param {string} choice The users choice
  */
 
 function decisionToMove(choice) {
@@ -115,14 +114,14 @@ function decisionToMove(choice) {
         let runButton = elementCreator('.story-container', 'button', story.run);
         let pretendButton = elementCreator('.story-container', 'button', story.pretendDetectiv);
 
-        pretendButton.addEventListener('click', () => decisionToMoveOn('detectivChoice'));
+        pretendButton.addEventListener('click', () => decisionToMoveOn('detectiveChoice'));
         runButton.addEventListener('click', () => decisionToMoveOn('runChoice'));
     }
 }
 
 /**
- * function som beroende på användarens val ger olika resultat
- * @param {string} choice - valet användare gör
+ * Function that depending on the users choice gives different results
+ * @param {string} choice - The users choice
  */
 
 function decisionToMoveOn(choice) {
@@ -149,7 +148,7 @@ function decisionToMoveOn(choice) {
         let turnButton = elementCreator('.story-container', 'button', story.turnAround);
         turnButton.addEventListener('click', () => lastStep('turnAround'));
 
-    } else if (choice === 'detectivChoice') {
+    } else if (choice === 'detectiveChoice') {
 
         slowTextAnimation(elementCreator('.story-container', 'p', story.playerChoiceDetective))
 
@@ -163,8 +162,8 @@ function decisionToMoveOn(choice) {
 }
 
 /**
- * function som beroende på användarens val ger olika resultat
- * @param {string} choice - valet användaren gör
+ * Function that depending on the users choice gives different results
+ * @param {string} choice - The users choice
  */
 
 function lastStep(choice) {
@@ -194,12 +193,12 @@ function lastStep(choice) {
 }
 
 /**
- * function som kan kallas på för att lägga elementen i rätt div, skapa element och vilket innehåll
- * @param {string} whatDiv - vilken div ska innehållet ligga i
- * @param {string} whatElement - vilket element som ska skapas
- * @param {string} storyContent - vilken story som ska köras
- * @param {HTMLInputElement} userInputField - inputfältet som användaren fyller i sitt val
- * @returns {HTMLElement} - retunerar ett element på sidan
+ * Function that creates element depending on the input parameters
+ * @param {string} whatDiv What div the element should be in
+ * @param {string} whatElement What element to create
+ * @param {string} storyContent What story to run
+ * @param {HTMLInputElement} userInputField Input field for the user to enter a choice
+ * @returns {HTMLElement} Returns a element on the page
  */
 
 function elementCreator(whatDiv, whatElement, storyContent, userInputField) {
@@ -223,8 +222,8 @@ function elementCreator(whatDiv, whatElement, storyContent, userInputField) {
 }
 
 /**
- *
- * @param {HTMLElement} element - targetar ett element som den animerar
+ * Splits the text and runs it one letter at a time
+ * @param {HTMLElement} element Targets an element
  *
  */
 
