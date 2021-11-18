@@ -10,6 +10,7 @@ body {
     background: black;
     color: white;
     font-size: 30px;
+    margin: 0;
 }
 
 .start-picture{
@@ -26,12 +27,15 @@ main {
 }
 
 p {
-    text-align: center;
+   width: 550px;
+    align-self: center;
+
 }
 
 .minimumLetters {
     font-size: 1rem;
     color: red;
+    text-align: center;
 }
 
 button {
@@ -51,29 +55,11 @@ input {
     height: 30rem;
     width: 40rem;
 }
-/*slidar in texten*/
-.slide-right {
-    width: 100%;
-    overflow: hidden;
-    margin-left: auto;
-}
-
-.slide-right p {
-    animation: 2s slide-right;
-}
-
-@keyframes slide-right {
-    from {
-        margin-left: -500%;
-    }
-    to {
-        margin-left: 0;
-    }
-}
 
 /*Effect on title*/
 .title {
     letter-spacing: 0.5em;
+    height: 250px;
 }
 
 .title > span {
@@ -314,29 +300,13 @@ span {
 }
 
 @media screen and (max-width: 900px){
-    /*  slideeffekt på texten*/
-    .slide-right {
-        width: 100%;
-        overflow: hidden;
-        margin-left: auto;
-    }
-
-    .slide-right p {
-        animation: 2s slide-right;
-    }
-
-    @keyframes slide-right {
-        from {
-            margin-left: -200%;
-        }
-        to {
-            margin-left: 0;
-        }
-    }
-
     .carPicture, .dogPicture, .imgOfBench {
         height: 30rem;
         width: 30rem;
+    }
+
+    p {
+        width: 400px;
     }
 }
 
@@ -345,6 +315,10 @@ span {
     .carPicture, .dogPicture, .imgOfBench {
         height: 15rem;
         width: 20rem;
+    }
+
+    p {
+        width: 300px;
     }
 
     body {
@@ -362,25 +336,7 @@ span {
     .story-container {
     }
 
-  /*  slideeffekt på texten*/
-    .slide-right {
-        width: 100%;
-        overflow: hidden;
-        margin-left: auto;
-    }
 
-    .slide-right p {
-        animation: 2s slide-right;
-    }
-
-    @keyframes slide-right {
-        from {
-            margin-left: -400%;
-        }
-        to {
-            margin-left: 0;
-        }
-    }
 }
 
 
